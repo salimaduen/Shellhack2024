@@ -4,7 +4,7 @@ import Footer from './route/footer.jsx';
 
 const  App = () => {
   return (
-    <div className= "app">
+    <div className= "App">
     <Dashboard />
     <Footer /> 
     </div>
