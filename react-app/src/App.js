@@ -1,10 +1,10 @@
 import './App.css';
-import Dashboard from  "./route/main.js";
-import Footer from './route/footer.js';
+import Dashboard from  "./route/main.jsx";
+import Footer from './route/footer.jsx';
 
 const  App = () => {
   return (
-    <div className= "app">
+    <div className= "App">
     <Dashboard />
     <Footer /> 
     </div>
