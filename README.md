@@ -2,6 +2,8 @@
 
 ![image](https://github.com/user-attachments/assets/0274f446-b547-4c47-8510-d9209164bdcb)
 
+[The Notion](https://www.notion.so/Shell-Hacks-2024-Research-10fd606c4d308024b0abefded5102e8a?pvs=4)
+
 ## Problem statement: 
 
 Immigrants don’t have financial guidance when arriving in the U.S.
