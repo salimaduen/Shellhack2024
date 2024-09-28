@@ -1,6 +1,6 @@
 from flask import Flask, request
 from .extensions import db, bcrypt, jwt, babel
-from .routes import auth
+from .routes import user_api, profile_api
 from flask_babel import Babel
 
 def create_app(config_class='config.DevelopmentConfig'):
@@ -21,6 +21,7 @@ def create_app(config_class='config.DevelopmentConfig'):
         return request.accept_languages.best_match(app.config['BABEL_SUPPORTED_LANGUAGES'])
 
     # blueprints?
-    app.register_blueprint(auth)
+    app.register_blueprint(user_api)
+    app.register_blueprint(profile_api)
 
     return app
