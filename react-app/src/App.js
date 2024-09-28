@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Dashboard from  "./main.js";
-
+import Dashboard from  "./route/main.js";
+import Footer from './route/footer.js';
 
 const  App = () => {
   return (
