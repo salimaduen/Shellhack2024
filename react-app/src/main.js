@@ -1,6 +1,6 @@
 import react from "react";
 
-import './main.css';
+
 const Dashboard = () => {
     return (
         <div className= "main-dashboard"  >
@@ -11,3 +11,4 @@ const Dashboard = () => {
         </div>  )
 
 }
+export default Dashboard

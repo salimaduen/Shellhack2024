@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import Dashboard from  "./main.js";
 
-function App() {
+
+const  App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>TEST</p>
-      </header>
+    <div className= "app">
+    <Dashboard />
     </div>
-  );
-}
 
+  );
+};
 export default App;
