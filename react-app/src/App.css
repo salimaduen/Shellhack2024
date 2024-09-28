@@ -1,7 +1,49 @@
-.App {
-  text-align: center;
-  background: linear-gradient(rgb(0, 0, 0.7), rgb(0, 0, 0.7));
+.header-dashboard {
+  display: flex;
   height: 100vh;
+  text-align: center;
+  background: linear-gradient(#1E152A), (#1E152A);
+  background-image: url("../public/hero.png");
+  background-color: blue;
+}
+
+.content
+{
+  border: 1px red solid;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+
+}
+
+
+
+.button-34 {
+  background: #1E152A;
+  border-radius: 999px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
 }
 
 .App-logo {

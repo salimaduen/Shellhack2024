@@ -1,18 +1,23 @@
 import React from "react";
 
 
+
 const Dashboard = () => {
     return (
-        <div className= "main-dashboard"  >
-            <header className="header-dashboard"> 
-                <img src= {'logo.jpeg'} alt="logo" className="logo" style= {{width: '1200px', height: '1200px'}} >
-                </img>
+        <header className="header-dashboard"> 
+            <div className="content">
+                <h1>Getting Started</h1>
+                <button class="button-34">Button 34</button>
+
+
+                </div>
             </header>
-        </div>  )
+          )
 
 }
+
+
 
 export default Dashboard;
     
   
-
