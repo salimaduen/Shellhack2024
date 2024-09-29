@@ -50,9 +50,6 @@ def profile_routes(profile_api):
                     {"role": "user", "content": prompt}
                 ]
             )
-            print('here')
-            print(type(response.choices[0].message.content))
-            print(response.choices[0].message.content)
             recommendations = response.choices[0].message.content
         except Exception as e:
             return jsonify({'error': f"Failed to generate recommendations: {str(e)}"}), 500
@@ -83,7 +80,8 @@ def profile_routes(profile_api):
 
         # Combine the parts to form the final prompt
         prompt = " ".join(prompt_parts)
-        prompt += " Based on this information, what financial advice would you give the user? Return organized by section JSON."
+        prompt += " Based on this information, what financial advice would you give the user? Be insightful for each category. Give suggestions for each and substantial advice. If user has any issue, build a step by step plan that can help them. Return organized by section JSON."
+        print(prompt)
         return prompt
 
     
