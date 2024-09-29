@@ -1,7 +1,11 @@
 from flask import Flask, request
-from .extensions import db, bcrypt, jwt, babel
-from .routes import user_api, profile_api
+from .extensions import bcrypt, jwt
+from .routes import user_routes, profile_routes
 from flask_babel import Babel
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
+db = SQLAlchemy()
 
 def create_app(config_class='config.DevelopmentConfig'):
     app = Flask(__name__)
@@ -11,17 +15,19 @@ def create_app(config_class='config.DevelopmentConfig'):
     db.init_app(app)
     bcrypt.init_app(app)
     jwt.init_app(app)
-    babel.init_app(app)
 
-    @babel.localselector
     def get_locale():
         lang = request.args.get('lang')
-        if lang in app.config['BABEL_SUPPORTED_LOCALES']:
+        if lang and lang in app.config['BABEL_SUPPORTED_LOCALES']:
             return lang
-        return request.accept_languages.best_match(app.config['BABEL_SUPPORTED_LANGUAGES'])
+        return request.accept_languages.best_match(app.config['BABEL_SUPPORTED_LOCALES'])
+    
+    babel = Babel(app, locale_selector=get_locale)
 
-    # blueprints?
-    app.register_blueprint(user_api)
-    app.register_blueprint(profile_api)
+    migrate = Migrate(app, db)
+    
+    # routes
+    user_routes(app)
+    profile_routes(app)
 
     return app
