@@ -16,7 +16,6 @@ class User(db.Model):
 
      # Establish relationships
     profile = relationship('UserProfile', back_populates='user', uselist=False)
-    registered_account = relationship('RegisteredAccount', back_populates='user', uselist=False)
 
     def set_password(self, password):
         self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
