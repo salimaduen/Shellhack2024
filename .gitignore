@@ -1,0 +1,15 @@
+.venv/**
+*.env
+*.env.*
+.envrc
+*.p12
+*.pem
+instance/
+.mypy_cache/
+.pytest_cache/
+.tox/
+coverage/
+htmlcov/
+.pytest_cache/
+.cache
+**/__pycache__/
