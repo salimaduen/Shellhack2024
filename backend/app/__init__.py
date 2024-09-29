@@ -3,6 +3,7 @@ from .extensions import db, bcrypt, jwt
 from .routes import user_routes, profile_routes
 from flask_babel import Babel
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 
 def create_app(config_class='config.DevelopmentConfig'):
@@ -13,6 +14,8 @@ def create_app(config_class='config.DevelopmentConfig'):
     db.init_app(app)
     bcrypt.init_app(app)
     jwt.init_app(app)
+
+    CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}}) 
 
     def get_locale():
         lang = request.args.get('lang')
