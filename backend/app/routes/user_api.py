@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ..extensions import db
 from ..models.user import User
+from ..models.user_profile import UserProfile
 from flask_jwt_extended import create_access_token
 
 def user_routes(user_api):
@@ -8,11 +9,15 @@ def user_routes(user_api):
     @user_api.route('/auth/user/register', methods=['POST'])
     def register():
         data = request.get_json()
-        username = data.get('username')
         email = data.get('email')
         password = data.get('password')
+        employment_status = data.get('employmentStatus')
+        financial_goal = data.get('financialGoal')
+        has_bank = data.get('hasBankAccount')
+        has_credit_card = data.get('hasCreditCards')
 
-        if not (username and email and password):
+
+        if not (email and password):
             return jsonify({"message": "Username, email, and password are required"}), 400
 
         if User.query.filter_by(email=email).first() or User.query.filter_by(username=username).first():
@@ -21,8 +26,20 @@ def user_routes(user_api):
         # Create the new user and set the password
         new_user = User(username=username, email=email)
         new_user.set_password(password)
+        new_user_profile = UserProfile(
+            user_id=new_user.id,
+            employment_status=employment_status,
+            has_bank_account= has_bank,
+            monthly_income_range = "<2000",
+            has_debt=True,
+            debt_amount=4000,
+            saving_habit=True,
+            credit_score_range="700+",
+            literacy_comfortability="Not Comfortable At All",
+        )
 
         db.session.add(new_user)
+        db.session.add(new_user_profile)
         db.session.commit()
 
         return jsonify({"message": "User registered successfully"}), 201
