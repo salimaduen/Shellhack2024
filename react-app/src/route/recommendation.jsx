@@ -11,7 +11,7 @@ const Recommendation = () => {
       try {
 
         const token = localStorage.getItem('access_token')
-
+        console.log(token)
         const response = await axios.get('http://localhost:5000/api/profile/recommendation', {
           headers: {
             Authorization: `Bearer ${token}`
@@ -20,7 +20,7 @@ const Recommendation = () => {
 
         // Parse the nested JSON string from the response
         const parsedData = JSON.parse(response.data.recommendations);
-
+        console.log(response.data);
         setRecommendationData(parsedData);
       } catch (err) {
         setError('Failed to fetch recommendation data');

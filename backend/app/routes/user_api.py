@@ -3,6 +3,7 @@ from ..extensions import db
 from ..models.user import User
 from ..models.user_profile import UserProfile
 from flask_jwt_extended import create_access_token
+from datetime import timedelta
 
 def user_routes(user_api):
 
@@ -44,7 +45,10 @@ def user_routes(user_api):
         db.session.add(new_user_profile)
         db.session.commit()
 
-        return jsonify({"message": "User registered successfully"}), 201
+
+        access_token = create_access_token(identity=new_user.id, expires_delta=timedelta(hours=10))
+
+        return jsonify({"message": "User registered successfully", "access_token": access_token}), 201
 
     @user_api.route('/auth/user/login', methods=['POST'])
     def login():

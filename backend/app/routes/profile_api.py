@@ -5,6 +5,7 @@ from openai import OpenAI
 from ..extensions import db
 from dotenv import load_dotenv
 import os
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
 
 load_dotenv()
@@ -28,9 +29,11 @@ def profile_routes(profile_api):
         return jsonify({"profile": "profile-data-here"}), 200
 
     @profile_api.route('/api/profile/recommendation', methods=['GET'])
+    @jwt_required()
     def get_recommendation():
-        user_id = request.args.get('user_id')
-       
+        print('here?')
+        user_id = get_jwt_identity()
+        print(user_id)
         if not user_id:
             return jsonify({'error': 'User ID is required'}), 400
 
