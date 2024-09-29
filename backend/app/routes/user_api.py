@@ -24,7 +24,7 @@ def user_routes(user_api):
             return jsonify({"message": "User with this email or username already exists"}), 400
 
         # Create the new user and set the password
-        new_user = User(username=username, email=email)
+        new_user = User(email=email)
         new_user.set_password(password)
         new_user_profile = UserProfile(
             user_id=new_user.id,
