@@ -26,10 +26,14 @@ def user_routes(user_api):
         # Create the new user and set the password
         new_user = User(email=email)
         new_user.set_password(password)
+
+        db.session.add(new_user)
+        db.session.commit()
+
         new_user_profile = UserProfile(
             user_id=new_user.id,
             employment_status=employment_status,
-            has_bank_account= has_bank,
+            has_bank_account= True,
             monthly_income_range = "<2000",
             has_debt=True,
             debt_amount=4000,
@@ -37,8 +41,6 @@ def user_routes(user_api):
             credit_score_range="700+",
             literacy_comfortability="Not Comfortable At All",
         )
-
-        db.session.add(new_user)
         db.session.add(new_user_profile)
         db.session.commit()
 

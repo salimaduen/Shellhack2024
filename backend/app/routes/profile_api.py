@@ -6,6 +6,7 @@ from ..extensions import db
 from dotenv import load_dotenv
 import os
 
+
 load_dotenv()
 
 # Set up OpenAI client
@@ -44,12 +45,15 @@ def profile_routes(profile_api):
         # Get a response from the fine-tuned model
         try:
             response = client.chat.completions.create(
-                model='fine-tuned-model-name',  # replace with your model name
+                model='ft:gpt-3.5-turbo-0125:financeapp::ACbM8G5Z',  # replace with your model name
                 messages=[
                     {"role": "user", "content": prompt}
                 ]
             )
-            recommendations = response.choices[0].message['content']
+            print('here')
+            print(type(response.choices[0].message.content))
+            print(response.choices[0].message.content)
+            recommendations = response.choices[0].message.content
         except Exception as e:
             return jsonify({'error': f"Failed to generate recommendations: {str(e)}"}), 500
 
@@ -80,7 +84,6 @@ def profile_routes(profile_api):
         # Combine the parts to form the final prompt
         prompt = " ".join(prompt_parts)
         prompt += " Based on this information, what financial advice would you give the user? Return organized by section JSON."
-
         return prompt
 
     
