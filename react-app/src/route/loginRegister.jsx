@@ -26,9 +26,13 @@ const LoginRegister = () => {
     if (isLogin) {
       try {
         const response = await axios.post('http://localhost:5000/auth/user/login', {
-          email: formData.email,
-          password: formData.password,
-        });
+            email: formData.email,
+            password: formData.password,
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
 
         if (response.status === 200) {
           const { access_token } = response.data;
