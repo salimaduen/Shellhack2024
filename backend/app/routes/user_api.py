@@ -18,24 +18,14 @@ def user_routes(user_api):
         if User.query.filter_by(email=email).first() or User.query.filter_by(username=username).first():
             return jsonify({"message": "User with this email or username already exists"}), 400
 
-       # Create new user
-    new_user = User(username=username, email=email)
-    new_user.set_password(password)
+        # Create the new user and set the password
+        new_user = User(username=username, email=email)
+        new_user.set_password(password)
 
-    try:
         db.session.add(new_user)
         db.session.commit()
 
-        # Create an entry in RegisteredAccount after user creation
-        registered_account = RegisteredAccount(user_id=new_user.id)
-        db.session.add(registered_account)
-        db.session.commit()
-
         return jsonify({"message": "User registered successfully"}), 201
-
-    except Exception as e:
-        db.session.rollback()
-        return jsonify({"message": str(e)}), 500
 
     @user_api.route('/auth/user/login', methods=['POST'])
     def login():
