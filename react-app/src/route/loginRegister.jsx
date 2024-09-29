@@ -70,6 +70,10 @@ const LoginRegister = () => {
             });
     
             if (response.status === 201) {
+              const { access_token } = response.data;
+
+          // Save access token to localStorage
+              localStorage.setItem('access_token', access_token);
               // Registration successful, navigate to login or dashboard
               navigate('/dashboard');
             }
