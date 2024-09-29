@@ -9,8 +9,13 @@ const Recommendation = () => {
     // Function to fetch recommendation data
     const fetchRecommendation = async () => {
       try {
+
+        const token = localStorage.getItem('access_token')
+
         const response = await axios.get('http://localhost:5000/api/profile/recommendation', {
-          params: { user_id: 2 }, // Default user_id = 2
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         });
 
         // Parse the nested JSON string from the response
