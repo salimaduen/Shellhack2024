@@ -118,6 +118,26 @@ const LoginRegister = () => {
               />
             </div>
             <div>
+              <label className="block mb-2 text-sm font-medium">Email</label>
+              <input
+                type="email"
+                name="email"
+                className="w-full p-3 border rounded-md"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label className="block mb-2 text-sm font-medium">Password</label>
+              <input
+                type="password"
+                name="password"
+                className="w-full p-3 border rounded-md"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
               <label className="block mb-2 text-sm font-medium">Age Group</label>
               <select
                 name="ageGroup"
