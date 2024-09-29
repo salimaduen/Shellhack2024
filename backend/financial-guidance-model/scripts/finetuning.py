@@ -1,14 +1,16 @@
 from openai import OpenAI
+from dotenv import load_dotenv
 import os
 import time
 
+load_dotenv()
 API_KEY = os.getenv('OPENAI_API_KEY')
 
 client = OpenAI(
     api_key=API_KEY
 )
 
-training_file_path = '/some/path'
+training_file_path = './financial-guidance-model/data/gpt-3.5/processed_data.jsonl'
 
 
 def upload_training_data(file_path):
