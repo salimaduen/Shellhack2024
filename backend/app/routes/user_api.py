@@ -20,7 +20,7 @@ def user_routes(user_api):
         if not (email and password):
             return jsonify({"message": "Username, email, and password are required"}), 400
 
-        if User.query.filter_by(email=email).first() or User.query.filter_by(username=username).first():
+        if User.query.filter_by(email=email).first():
             return jsonify({"message": "User with this email or username already exists"}), 400
 
         # Create the new user and set the password
