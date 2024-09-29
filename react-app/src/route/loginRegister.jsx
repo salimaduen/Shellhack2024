@@ -51,7 +51,35 @@ const LoginRegister = () => {
         }
       }
     } else {
-      // Handle registration (placeholder)
+        try {
+            const response = await axios.post('http://localhost:5000/auth/user/register', {
+              fullName: formData.fullName,
+              email: formData.email,
+              password: formData.password,
+              employmentStatus: formData.employmentStatus,
+              financialGoal: formData.financialGoal,
+              monthlyIncomeRange: formData.monthlyIncomeRange,
+              hasBankAccount: formData.hasBankAccount,
+              savingsHabit: formData.savingsHabit,
+              hasCreditCards: formData.hasCreditCards,
+              knowsCreditScore: formData.knowsCreditScore,
+            }, {
+              headers: {
+                'Content-Type': 'application/json',
+              }
+            });
+    
+            if (response.status === 201) {
+              // Registration successful, navigate to login or dashboard
+              navigate('/dashboard');
+            }
+          } catch (error) {
+            if (error.response && error.response.status === 400) {
+              setErrorMessage("Invalid registration details. Please check your input.");
+            } else {
+              setErrorMessage("An error occurred during registration. Please try again later.");
+            }
+          }
       console.log('Registration form data:', formData);
     }
   };
