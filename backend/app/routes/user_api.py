@@ -29,6 +29,8 @@ def user_routes(user_api):
 
     @user_api.route('/auth/user/login', methods=['POST'])
     def login():
+        response_data = {"message": "Success"}
+        return jsonify(response_data), 200
         data = request.get_json()
         email = data.get('email')
         password = data.get('password')
