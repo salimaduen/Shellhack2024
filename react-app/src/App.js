@@ -1,14 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import Dashboard from  "./route/main.jsx";
+import Footer from './route/footer.jsx';
 
-function App() {
+const  App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>TEST</p>
-      </header>
+    <div className= "app">
+    <Dashboard />
+    <Footer /> 
     </div>
-  );
-}
 
+  );
+};
 export default App;
