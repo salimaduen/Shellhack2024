@@ -2,7 +2,7 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_bcrypt import Bcrypt
-from ..app import db
+from ..extensions import db
 
 bcrypt = Bcrypt()
 

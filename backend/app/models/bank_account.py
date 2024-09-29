@@ -1,4 +1,4 @@
-from ..app import db
+from ..extensions import db
 from .user import User
 
 class BankAccount(db.Model):

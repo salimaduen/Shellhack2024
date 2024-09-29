@@ -1,7 +1,8 @@
 from flask import Blueprint, request, jsonify
 from ..models.user_profile import UserProfile
+from ..models.user import User
 from openai import OpenAI
-from ..app import db
+from ..extensions import db
 from dotenv import load_dotenv
 import os
 
@@ -28,11 +29,12 @@ def profile_routes(profile_api):
     @profile_api.route('/api/profile/recommendation', methods=['GET'])
     def get_recommendation():
         user_id = request.args.get('user_id')
-
+       
         if not user_id:
             return jsonify({'error': 'User ID is required'}), 400
 
         user_profile = UserProfile.query.filter_by(user_id=user_id).first()
+        print(user_profile)
         if not user_profile:
             return jsonify({'error': 'User not found'}), 404
         

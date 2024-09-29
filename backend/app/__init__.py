@@ -1,11 +1,9 @@
 from flask import Flask, request
-from .extensions import bcrypt, jwt
+from .extensions import db, bcrypt, jwt
 from .routes import user_routes, profile_routes
 from flask_babel import Babel
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-db = SQLAlchemy()
 
 def create_app(config_class='config.DevelopmentConfig'):
     app = Flask(__name__)
@@ -24,7 +22,6 @@ def create_app(config_class='config.DevelopmentConfig'):
     
     babel = Babel(app, locale_selector=get_locale)
 
-    migrate = Migrate(app, db)
     
     # routes
     user_routes(app)
